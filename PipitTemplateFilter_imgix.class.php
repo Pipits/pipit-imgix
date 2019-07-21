@@ -2,7 +2,14 @@
 class PipitTemplateFilter_imgix extends PerchTemplateFilter {
     
     public function filterBeforeProcessing($value, $valueIsMarkup = false) {
-        if (PERCH_PRODUCTION_MODE == PERCH_DEVELOPMENT) return $value;
+        $allow_dev = false;
+        if(defined('PIPIT_IMGIX_DEV')) $allow_dev = PIPIT_CLOUDINARY_DEV;
+
+        if(!$allow_dev) {
+            if (PERCH_PRODUCTION_MODE == PERCH_DEVELOPMENT || PERCH_PRODUCTION_MODE == PERCH_STAGING) {
+                return $value;
+            }
+        }
 
         $subdomain = $query = '';
         if (defined('PIPIT_IMGIX_SUBDOMAIN')) {
