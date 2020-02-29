@@ -1,4 +1,8 @@
 <?php
+/**
+ * v1.1
+ * https://github.com/Pipits/pipit-imgix
+ */
 class PipitTemplateFilter_imgix extends PerchTemplateFilter {
     
     public function filterBeforeProcessing($value, $valueIsMarkup = false) {
