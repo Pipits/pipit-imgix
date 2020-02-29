@@ -45,9 +45,10 @@ Refer to [Imgix's documentation](https://docs.imgix.com/apis/) for what paramete
 
 You can add Imgix parameters in 2 ways:
 
-1. Use the `opts` attribute and add them all together as if you were to add them to a URL:
+1. Use the `imgix-opts` or `opts` attribute and add them all together as if you were to add them to a URL:
 
 ```html
+<perch:content id="image" type="image" filter="imgix" imgix-opts="auto=format&q=80&w=800">
 <perch:content id="image" type="image" filter="imgix" opts="auto=format&q=80&w=800">
 ```
 
@@ -58,10 +59,25 @@ You can add Imgix parameters in 2 ways:
 ```
 
 
+### Dynamic variables
+
+You can also use dynamic variables inside the imgix attributes. These are the variables you have access to inside the template:
+
+```html
+<perch:content id="quality" type="select" label="Image Quality" options="90,80,70" suppress>
+<perch:content id="image" type="image" label="Image" filter="imgix" imgix-opts="auto=format&q={quality}&w=800">
+```
+
+```html
+<perch:content id="quality" type="select" label="Image Quality" options="90,80,70" suppress>
+<perch:content id="image" type="image" label="Image" filter="imgix" imgix-q="{quality}" imgix-auto="format">
+```
+
+
 ### Options
 
 You can specify a subdomain other than the default `PIPIT_IMGIX_SUBDOMAIN` with the `subdomain` attribute:
 
 ```html
-<perch:content id="image" type="image" filter="imgix" opts="auto=format&q=80&w=800" subdomain="grabapipit">
+<perch:content id="image" type="image" filter="imgix" imgix-opts="auto=format&q=80&w=800" subdomain="grabapipit">
 ```
