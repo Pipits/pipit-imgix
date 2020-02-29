@@ -31,6 +31,27 @@ define('PIPIT_IMGIX_SUBDOMAIN', 'grabapipit');
 ```
 
 
+#### Development / Staging environments
+
+By default, the filter does not rewrite your image URLs if you set your Perch production environment to development or staging:
+ 
+```php
+define('PERCH_PRODUCTION_MODE', PERCH_DEVELOPMENT);
+```
+
+You have the option to enable it:
+
+```php
+define('PIPIT_IMGIX_DEV', true);
+```
+
+Note that Imgix requires a publicly accessible URL to fetch the image from. 
+
+Also note that your Imgix subdomain is tied to a specific location, so unless you are using cloud storage a single subdomain won't work across multiple environments.
+
+
+
+
 ## Usage
 
 Use `filter="imgix"` on your image field tags to serve the image via Imgix:
